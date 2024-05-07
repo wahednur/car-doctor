@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import Sliders from "../components/Slider/Sliders";
 import SectionTitle from "../components/SectionTitle/SectionTitle";
 import Services from "../components/Services/Services";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>Car Doctor | A legendary car workshop</title>
+      </Helmet>
       <Sliders></Sliders>
       <div className="w-full mt">
         <div className="flex flex-col md:flex-row gap-6 lg:gap-[122px] lg:mb-40">

@@ -1,7 +1,11 @@
+import { Helmet } from "react-helmet-async";
+
 const Services = () => {
   return (
     <div>
-      <h1 className="text-3xl">From Services page</h1>
+      <Helmet>
+        <title>Services</title>
+      </Helmet>
     </div>
   );
 };
