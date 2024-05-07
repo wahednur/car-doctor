@@ -7,6 +7,7 @@ import Services from "../pages/Services";
 import Contact from "../pages/Contact";
 import Login from "../components/auth/Login";
 import SignUp from "../components/auth/SignUp";
+import ServiceDetails from "../components/Services/ServiceDetails";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services></Services>,
+      },
+      {
+        path: "/services/service-detail",
+        element: <ServiceDetails></ServiceDetails>,
       },
       {
         path: "/blog",

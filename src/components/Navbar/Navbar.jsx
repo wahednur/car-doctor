@@ -4,7 +4,9 @@ import { SlHandbag } from "react-icons/sl";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa6";
 import { useState } from "react";
+// import { AuthContext } from "../../providers/AuthProvider";
 const Navbar = () => {
+  // const { user } = useState(AuthContext);
   const navLink = (
     <>
       <li>
@@ -55,6 +57,23 @@ const Navbar = () => {
             <CiSearch />
           </Link>
           <Link className="cbtn cbtn-outline">Appointment</Link>
+          <div className="nav-user w-12 relative">
+            <img
+              className="rounded-full border-dr-orange border w-16"
+              src="/public/assets/images/user.png"
+              alt=""
+            />
+            <div className="nav-user-info absolute space-y-5">
+              <p>wahednur@gmail.com</p>
+              <hr />
+              <p>Name: Abdul Wahed Nur</p>
+              <hr />
+              <div className="btn-group flex gap-5">
+                <Link className="cbtn cbtn-outline">Edit</Link>
+                <Link className="cbtn cbtn-orange">Log out</Link>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="lg:hidden">

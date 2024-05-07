@@ -1,6 +1,37 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log("Handle sign up clicked", name, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${user?.email} user created successfully`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.log(error.user);
+      });
+    form.reset();
+  };
+
   return (
     <div>
       <div className="container mx-auto mt-10 mb-32">
@@ -13,7 +44,7 @@ const SignUp = () => {
               Sign Up
             </h1>
             <div className="p-6 md:p-[75px]">
-              <form>
+              <form onSubmit={handleSignUp}>
                 <div className="space-y-8">
                   <div className="form-grp">
                     <label htmlFor="email">Name</label>
@@ -44,7 +75,7 @@ const SignUp = () => {
                   </div>
                   <input
                     type="submit"
-                    value="Sign in"
+                    value="Sign up"
                     className="cbtn cbtn-orange text-white w-full"
                   />
                 </div>

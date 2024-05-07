@@ -7,7 +7,7 @@ import {
 import logo from "/assets/images/f-logo.svg";
 const Footer = () => {
   return (
-    <footer className="footer p-10 bg-gray-black text-white">
+    <footer className="footer p-10 bg-gray-black text-white mt">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row gap-5 justify-between w-full">
           <aside className="w-full md:w-5/12 gap-5 space-y-5">

@@ -1,7 +1,27 @@
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { userLogin } = useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+    userLogin(email, password)
+      .then((result) => {
+        console.log(`${result.user} Login successfully`);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="container mx-auto mt-10 mb-32">
       <Helmet>
@@ -16,7 +36,7 @@ const Login = () => {
             Login
           </h1>
           <div className="p-6 md:p-[75px]">
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="space-y-8">
                 <div className="form-grp">
                   <label htmlFor="email">Email</label>

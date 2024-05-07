@@ -15,12 +15,12 @@ const Home = () => {
         <div className="flex flex-col md:flex-row gap-6 lg:gap-[122px] lg:mb-40">
           <div className="about-img relative w-full md:w-1/2 ">
             <img
-              className="drop-shadow-xl"
+              className="drop-shadow-xl w-full"
               src="/assets/images/about/about-person.jpg"
               alt=""
             />
             <img
-              className="lg:absolute -right-16 -bottom-[84px] w-full drop-shadow-xl"
+              className="lg:absolute -right-16 -bottom-[84px] w-full md:w-[327px] drop-shadow-xl"
               src="/assets/images/about/galon.png"
               alt=""
             />
