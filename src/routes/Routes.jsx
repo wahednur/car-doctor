@@ -8,6 +8,8 @@ import Contact from "../pages/Contact";
 import Login from "../components/auth/Login";
 import SignUp from "../components/auth/SignUp";
 import ServiceDetails from "../components/Services/ServiceDetails";
+import Checkout from "../components/Checkout/Checkout";
+import BookingService from "../components/Services/BookingService";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +50,18 @@ const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/check-out/:id",
+        element: <Checkout></Checkout>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/service-detail/${params.id}`),
+      },
+      {
+        path: "/booking/:id",
+        element: <BookingService></BookingService>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/services/service-detail/${params.id}`),
       },
     ],
   },

@@ -3,10 +3,16 @@ import logo from "/assets/images/car-doctor.svg";
 import { SlHandbag } from "react-icons/sl";
 import { CiSearch } from "react-icons/ci";
 import { FaBars } from "react-icons/fa6";
-import { useState } from "react";
-// import { AuthContext } from "../../providers/AuthProvider";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+
 const Navbar = () => {
-  // const { user } = useState(AuthContext);
+  const { user, userLogOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    userLogOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navLink = (
     <>
       <li>
@@ -24,9 +30,15 @@ const Navbar = () => {
       <li>
         <NavLink to="/contact">Contact</NavLink>
       </li>
-      <li>
-        <NavLink to="/login">Login</NavLink>
-      </li>
+      {user?.email ? (
+        <li>
+          <button onClick={handleLogOut}>Logout</button>
+        </li>
+      ) : (
+        <li>
+          <NavLink to="/login">Login</NavLink>
+        </li>
+      )}
     </>
   );
   // const mblbtn = document.getElementById("mbl-icon-btn");
@@ -57,23 +69,29 @@ const Navbar = () => {
             <CiSearch />
           </Link>
           <Link className="cbtn cbtn-outline">Appointment</Link>
-          <div className="nav-user w-12 relative">
-            <img
-              className="rounded-full border-dr-orange border w-16"
-              src="/public/assets/images/user.png"
-              alt=""
-            />
-            <div className="nav-user-info absolute space-y-5">
-              <p>wahednur@gmail.com</p>
-              <hr />
-              <p>Name: Abdul Wahed Nur</p>
-              <hr />
-              <div className="btn-group flex gap-5">
-                <Link className="cbtn cbtn-outline">Edit</Link>
-                <Link className="cbtn cbtn-orange">Log out</Link>
+          {user?.email ? (
+            <div className="nav-user w-12 relative">
+              <img
+                className="rounded-full border-dr-orange border w-16"
+                src="/public/assets/images/user.png"
+                alt=""
+              />
+              <div className="nav-user-info absolute space-y-5">
+                <p>Email: {user?.email}</p>
+                <hr />
+                <p>Name: {user?.displayName}</p>
+                <hr />
+                <div className="btn-group flex gap-5">
+                  <Link className="cbtn cbtn-outline">Edit</Link>
+                  <Link onClick={handleLogOut} className="cbtn cbtn-orange">
+                    Log out
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
       <div className="lg:hidden">

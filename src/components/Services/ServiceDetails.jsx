@@ -8,13 +8,13 @@ import { Helmet } from "react-helmet";
 
 const ServiceDetails = () => {
   const LoadService = useLoaderData();
-  const { title, img, price, description, facility } = LoadService;
+  const { title, img, price, description, facility, _id } = LoadService;
   return (
     <div className="container mx-auto">
       <Helmet>
         <title>{title}</title>
       </Helmet>
-      <Breadcrumb bread={title}></Breadcrumb>
+      <Breadcrumb bread={title} pTitle={title}></Breadcrumb>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="detail w-full md:w-8/12">
           <img className="w-full rounded-lg" src={img} alt="" />
@@ -142,8 +142,11 @@ const ServiceDetails = () => {
             </div>
           </div>
           <h1 className="price">Price ${price}</h1>
-          <Link className="cbtn cbtn-orange w-full float-left text-center">
-            Proceed Checkout
+          <Link
+            to={`/booking/${_id}`}
+            className="cbtn cbtn-orange w-full float-left text-center"
+          >
+            Proceed Booking
           </Link>
         </div>
       </div>
