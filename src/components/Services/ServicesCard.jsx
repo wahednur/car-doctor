@@ -13,7 +13,7 @@ const ServicesCard = ({ service }) => {
         <h1 className="text-lg md:text-2xl font-bold">{title}</h1>
         <div className="flex justify-between text-xl font-bold text-dr-orange">
           <h2>Price: {price}</h2>
-          <Link>
+          <Link to={`services/service-detail/${service._id}`}>
             <FiArrowRight />
           </Link>
         </div>

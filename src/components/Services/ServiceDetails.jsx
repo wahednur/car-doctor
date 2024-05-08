@@ -1,36 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
 import { LuArrowRight } from "react-icons/lu";
 import ServiceFacility from "./ServiceFacility";
 import { IoDocumentTextOutline } from "react-icons/io5";
 import { IoMdArrowDown } from "react-icons/io";
+import { Helmet } from "react-helmet";
 
 const ServiceDetails = () => {
+  const LoadService = useLoaderData();
+  const { title, img, price, description, facility } = LoadService;
   return (
     <div className="container mx-auto">
-      <Breadcrumb></Breadcrumb>
+      <Helmet>
+        <title>{title}</title>
+      </Helmet>
+      <Breadcrumb bread={title}></Breadcrumb>
       <div className="flex flex-col md:flex-row gap-6">
         <div className="detail w-full md:w-8/12">
-          <img
-            className="w-full rounded-lg"
-            src="/public/assets/images/services/1.jpg"
-            alt=""
-          />
+          <img className="w-full rounded-lg" src={img} alt="" />
           <div className="text-content mt-8 md:mt-12">
-            <h2 className="title">Unique Car Engine Service</h2>
-            <p className="my-8">
-              There are many variations of passages of Lorem Ipsum available,
-              but the majority have suffered alteration in some form, by
-              injected humour, or randomised words which don&apos;t look even
-              slightly believable. If you are going to use a passage of Lorem
-              Ipsum, you need to be sure there isn&apos;t anything embarrassing
-              hidden in the middle of text.
-            </p>
+            <h2 className="title">{title}</h2>
+            <p className="my-8">{description}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <ServiceFacility></ServiceFacility>
-              <ServiceFacility></ServiceFacility>
-              <ServiceFacility></ServiceFacility>
-              <ServiceFacility></ServiceFacility>
+              {facility.map((facy, indx) => (
+                <ServiceFacility key={indx} facy={facy}></ServiceFacility>
+              ))}
             </div>
             <p className="mt-8">
               There are many variations of passages of Lorem Ipsum available,
@@ -147,7 +141,7 @@ const ServiceDetails = () => {
               </Link>
             </div>
           </div>
-          <h1 className="price">Price $250.00</h1>
+          <h1 className="price">Price ${price}</h1>
           <Link className="cbtn cbtn-orange w-full float-left text-center">
             Proceed Checkout
           </Link>
